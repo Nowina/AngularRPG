@@ -5,4 +5,7 @@ export class ItemRepository extends Repository<Item>{
     public getByType(type : itemType){
         return this.items.filter(s => s.type == type);
     }
+    constructor(){
+        super();
+    }
 }

@@ -4,23 +4,25 @@ import { ItemRepository } from '../repositories/item-repository';
 import { Hero } from 'src/app/models/hero';
 import { BackpackFactory } from '../factories/item/backpack-factory';
 import { ClothingFactory } from '../factories/item/clothing-factory';
-import { Weapon, Backpack } from 'src/app/models/item';
+import { Weapon, Backpack, ClothingPart, Item } from 'src/app/models/item';
 
 export class Seed{
     private WeaponFactory: WeaponFactory;
     private BackpackFactory : BackpackFactory;
-    private ClothingFacory : ClothingFactory;
+    private ClothingFactory : ClothingFactory;
     private WarriorFactory : WarriorFactory;
 
     constructor(){
         this.WeaponFactory = new WeaponFactory();
         this.WarriorFactory = new WarriorFactory();
-        this.ClothingFacory = new ClothingFactory();
+        this.ClothingFactory = new ClothingFactory();
         this.BackpackFactory = new BackpackFactory();
     }
 
-    public seedData(itemRepo: ItemRepository, hero : Hero){
-
+    public seedData(itemRepo: ItemRepository) : void {
+        itemRepo.addArray(this.addWeapons());
+        itemRepo.addArray(this.addBackpacks());
+        itemRepo.addArray(this.addClothing());
     }
 
     private addWeapons() : Weapon []{
@@ -37,7 +39,10 @@ export class Seed{
         return backpacks;
     }
 
-    private addClothing() {
-        
+    private addClothing() : ClothingPart [] {
+        let clothing : ClothingPart [] = [];
+        clothing.push(this.ClothingFactory.create("Pants",1,1,1,2))
+        clothing.push(this.ClothingFactory.create("Ghillie",10,5,10,4));
+        return clothing;
     }
 }

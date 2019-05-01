@@ -2,7 +2,7 @@ import { itemType, Item, itemStatus } from 'src/app/models/item';
 
 export abstract class ItemFactory{
     private itemType : itemType;
-    constructor(itemType:itemType){
+    constructor(itemType: itemType){
         this.itemType = itemType;
     }
 

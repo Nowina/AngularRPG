@@ -4,9 +4,12 @@ export abstract class Repository <T>{
     public getAll() : T[]{
         return this.items;
     }
-
-    public add(item : T) : void{
-        this.items.push(item);
+    public addArray(items : T[]) : void{
+        items.forEach(s => this.items.push(s));
+    }
+    public add(firstItem : T, ...restOfItems: T []) : void{
+        this.items.push(firstItem);
+        restOfItems.forEach(s => this.items.push(s));
     }
 
     public deleteItem(item ?:T) : void{ //deletes last if parameter is not given
