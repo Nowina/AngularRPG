@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Warrior, heroType} from "../../models/hero"
 import { Weapon } from "../../models/item"
-import { HeroFactory } from 'src/app/data-source/factories/hero-factory';
-import { WarriorFactory } from 'src/app/data-source/factories/warrior-factory';
+import { HeroFactory } from 'src/app/data-source/factories/hero/hero-factory';
+import { WarriorFactory } from 'src/app/data-source/factories/hero/warrior-factory';
+import { MagerFactory } from 'src/app/data-source/factories/hero/mage-factory';
 
 @Component({
   selector: 'app-board',
@@ -14,8 +15,10 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let hero = new WarriorFactory().create("JohnyBravo",1);
+    
+    let hero = new MagerFactory().create("JohnyBravo", 1);
     console.log(hero);
+    
   }
 
 }

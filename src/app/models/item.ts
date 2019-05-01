@@ -16,6 +16,7 @@ export abstract class Item{
     public durability : number;
     public status: itemStatus;
     public level : number;
+    public type : itemType;
 }
 
 export class Weapon extends Item{
