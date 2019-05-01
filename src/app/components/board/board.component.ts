@@ -22,7 +22,7 @@ export class BoardComponent implements OnInit {
     let hero : Warrior = new WarriorFactory().create("JohnyBravo",1);
     seed.seedData(itemRepo);
     console.log(hero);
-    console.log(itemRepo.getByType(itemType.Backpack));
+    console.log(itemRepo.getAll());
   }
 
 }

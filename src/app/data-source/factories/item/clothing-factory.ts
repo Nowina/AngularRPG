@@ -6,9 +6,9 @@ export class ClothingFactory extends ItemFactory{
         super(itemType.ClothingPart);
     }
 
-    public create( name :string, level : number,armor : number,camouflageFactor : number,weight : number) : ClothingPart{
+    public create( name :string, level : number,armor : number,camouflageFactor : number) : ClothingPart{
         let newItem = new ClothingPart;
-        this.fillBaseItemData(newItem,weight,name,level);
+        this.fillBaseItemData(newItem,name,level);
         newItem.armor = armor
         newItem.camouflageFactor = camouflageFactor;
         return newItem;

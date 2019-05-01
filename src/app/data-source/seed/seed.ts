@@ -27,22 +27,22 @@ export class Seed{
 
     private addWeapons() : Weapon []{
         let weapons: Weapon [] = [];
-        weapons.push(this.WeaponFactory.create("Sword",1,10,1,10));
-        weapons.push(this.WeaponFactory.create("Bow",2,15,5,8));
+        weapons.push(this.WeaponFactory.create("Sword",1,1,10));
+        weapons.push(this.WeaponFactory.create("Bow",2,5,8));
         return weapons;
     }
 
     private addBackpacks() : Backpack [] {
         let backpacks: Backpack[] = [];
-        backpacks.push(this.BackpackFactory.create("Small Backpack",1,2));
-        backpacks.push(this.BackpackFactory.create("Big backpack",3,3));
+        backpacks.push(this.BackpackFactory.create("Small Backpack",2));
+        backpacks.push(this.BackpackFactory.create("Big backpack",3));
         return backpacks;
     }
 
     private addClothing() : ClothingPart [] {
         let clothing : ClothingPart [] = [];
-        clothing.push(this.ClothingFactory.create("Pants",1,1,1,2))
-        clothing.push(this.ClothingFactory.create("Ghillie",10,5,10,4));
+        clothing.push(this.ClothingFactory.create("Pants",1,1,2))
+        clothing.push(this.ClothingFactory.create("Ghillie",10,10,4));
         return clothing;
     }
 }

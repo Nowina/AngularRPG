@@ -1,4 +1,5 @@
 import { itemType, Item, itemStatus } from 'src/app/models/item';
+import { calculateItemWeight } from 'src/app/utilities/utilities';
 
 export abstract class ItemFactory{
     private itemType : itemType;
@@ -6,13 +7,13 @@ export abstract class ItemFactory{
         this.itemType = itemType;
     }
 
-    protected fillBaseItemData(item : Item,weight : number, name :string, level : number) : void{
-        item.weight = weight;
+    protected fillBaseItemData(item : Item, name :string, level : number) : void{
         item.name = name;
         item.level = level;
-        item.durability = 100;
+        item.durability = level*50;
         item.status = itemStatus.Active;
         item.type = this.itemType;
+        item.weight = calculateItemWeight(item);
     }
 
 }

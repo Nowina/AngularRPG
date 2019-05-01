@@ -6,9 +6,9 @@ export class WeaponFactory extends ItemFactory{
         super(itemType.Weapon);
     }
 
-    public create( name :string, level : number,damage : number,range : number, weight : number) : Weapon{
+    public create( name :string, level : number,damage : number,range : number) : Weapon{
         let newItem = new Weapon;
-        this.fillBaseItemData(newItem,weight,name,level);
+        this.fillBaseItemData(newItem,name,level);
         newItem.damage = damage;
         newItem.range = range;
         return newItem;

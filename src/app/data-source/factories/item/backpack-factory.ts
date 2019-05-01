@@ -6,10 +6,10 @@ export class BackpackFactory extends ItemFactory{
         super(itemType.Backpack);
     }
 
-    public create( name :string, level : number, weight : number) : Backpack{
+    public create( name :string, level : number) : Backpack{
         let newItem = new Backpack;
-        this.fillBaseItemData(newItem,weight,name,level);
-        newItem.capacity = level*5;
+        this.fillBaseItemData(newItem,name,level);
+        newItem.capacity = level*3;
         return newItem;
     }
 }
