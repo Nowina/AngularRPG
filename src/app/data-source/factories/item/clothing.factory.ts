@@ -13,6 +13,7 @@ export class ClothingFactory extends ItemFactory{
         this.fillBaseItemData(newItem, name, level);
         newItem.armor = armor
         newItem.camouflageFactor = camouflageFactor;
+        newItem.isEquipped = false;
         return newItem;
     }
 }

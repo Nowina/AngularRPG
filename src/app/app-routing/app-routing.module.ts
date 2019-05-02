@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HeroDetailsComponent } from './components/hero-details/hero-details.component';
-import { HeroFormComponent } from './components/hero-form/hero-form.component';
-import { ShopComponent } from './components/shop/shop.component';
-import { BoardComponent } from './components/board/board.component';
+import { HeroDetailsComponent } from '../components/hero-details/hero-details.component';
+import { HeroFormComponent } from '../components/hero-form/hero-form.component';
+import { ShopComponent } from '../components/shop/shop.component';
+import { BoardComponent } from '../components/board/board.component';
 const routes: Routes = [
   {path: '', redirectTo: '/board', pathMatch: 'full'},
   {path: 'board', component: BoardComponent},

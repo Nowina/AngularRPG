@@ -3,6 +3,7 @@ import { Seed } from 'src/app/data-source/seed/seed';
 import { ItemRepository } from 'src/app/data-source/repositories/item-repository';
 import { Warrior } from 'src/app/models/hero/warrior';
 import { WarriorFactory } from 'src/app/data-source/factories/hero/warrior.factory';
+import { BackpackFactory } from 'src/app/data-source/factories/item/backpack.factory';
 
 @Component({
   selector: 'app-board',

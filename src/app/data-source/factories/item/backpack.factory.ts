@@ -12,6 +12,7 @@ export class BackpackFactory extends ItemFactory{
         let newItem = new Backpack;
         this.fillBaseItemData(newItem, name, level);
         newItem.capacity = level*3;
+        newItem.isEquipped = false;
         return newItem;
     }
 }

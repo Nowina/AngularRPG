@@ -9,6 +9,7 @@ export abstract class HeroFactory{
 
     constructor(private heroType: HeroType){
         this.heroType = heroType;
+        this.digitGenerator = new DigitGenerator();
     }
 
     protected fillBaseHeroData(hero:Hero, name:string, level:number): void{

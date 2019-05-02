@@ -8,6 +8,7 @@ export abstract class ItemFactory{
     private utilitis : Utilitis;
     constructor( private itemType: ItemType){
         this.itemType = itemType;
+        this.utilitis = new Utilitis();
     }
 
     protected fillBaseItemData(item :Item, name :string, level :number) : void{
