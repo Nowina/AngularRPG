@@ -1,11 +1,13 @@
 import { Repository } from './repository';
-import { Item, itemType } from 'src/app/models/item';
+import { Item} from 'src/app/models/item/item';
+import { ItemType } from 'src/app/models/enums/item-type';
 
 export class ItemRepository extends Repository<Item>{
-    public getByType(type : itemType){
-        return this.items.filter(s => s.type == type);
-    }
+   
     constructor(){
         super();
+    }
+    public getByType(type : ItemType) : Item[]{
+        return this.items.filter(s => s.type == type);
     }
 }

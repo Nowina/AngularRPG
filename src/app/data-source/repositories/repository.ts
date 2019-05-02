@@ -12,14 +12,13 @@ export abstract class Repository <T>{
         restOfItems.forEach(s => this.items.push(s));
     }
 
-    public deleteItem(item ?:T) : void{ //deletes last if parameter is not given
-        if (item == null || item === undefined){
-            this.items.pop();
-        }
-        else{
-            let indexOfItem = this.items.indexOf(item);
-            this.items.splice(indexOfItem);
-        }
+    public deleteItem(item :T) : void{ 
+        let indexOfItem = this.items.indexOf(item);
+        this.items.splice(indexOfItem,1);
+    }
+
+    public deleteLastItem() {
+        this.items.pop();
     }
     
     public deleteAll() : void{

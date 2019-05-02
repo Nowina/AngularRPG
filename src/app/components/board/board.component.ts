@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Warrior, heroType, Hero} from "../../models/hero"
-import { Weapon, itemType } from "../../models/item"
-import { HeroFactory } from 'src/app/data-source/factories/hero/hero-factory';
-import { WarriorFactory } from 'src/app/data-source/factories/hero/warrior-factory';
-import { MagerFactory } from 'src/app/data-source/factories/hero/mage-factory';
 import { Seed } from 'src/app/data-source/seed/seed';
 import { ItemRepository } from 'src/app/data-source/repositories/item-repository';
+import { Warrior } from 'src/app/models/hero/warrior';
+import { WarriorFactory } from 'src/app/data-source/factories/hero/warrior.factory';
 
 @Component({
   selector: 'app-board',
