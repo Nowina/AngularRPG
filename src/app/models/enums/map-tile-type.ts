@@ -1,6 +1,6 @@
 export enum MapTileType{
     Field,
-    River,
+    Water,
     Forest,
     Road 
 }
