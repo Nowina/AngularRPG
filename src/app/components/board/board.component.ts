@@ -4,6 +4,10 @@ import { ItemRepository } from 'src/app/data-source/repositories/item-repository
 import { Warrior } from 'src/app/models/hero/warrior';
 import { WarriorFactory } from 'src/app/data-source/factories/hero/warrior.factory';
 import { BackpackFactory } from 'src/app/data-source/factories/item/backpack.factory';
+import { MapFactory } from 'src/app/data-source/factories/map/map-factory';
+import { DigitGenerator } from 'src/app/utilities/digit-generator';
+import { MapTileType } from 'src/app/models/enums/map-tile-type';
+import { SquareMap } from 'src/app/models/map/square-map';
 
 @Component({
   selector: 'app-board',
@@ -15,12 +19,9 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let seed = new Seed();
-    let itemRepo = new ItemRepository();
-    let hero : Warrior = new WarriorFactory().create("JohnyBravo",1);
-    seed.seedData(itemRepo);
-    console.log(hero);
-    console.log(itemRepo.getAll());
+    let mapGenerator = new MapFactory();
+    let map = mapGenerator.create(4,50,50);
+    console.log(map);
   }
 
 }

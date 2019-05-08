@@ -16,6 +16,6 @@ export class DigitGenerator {
     } 
 
     public getRandomBoolean() : boolean{
-        return Boolean(this.getRandomNumber(1));
+        return Math.random() >= 0.5;
     }
 }

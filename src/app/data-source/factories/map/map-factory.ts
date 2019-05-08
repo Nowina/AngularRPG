@@ -6,10 +6,6 @@ import { WaterMapTileFactory } from './river.map-tile-factory';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { MapTile } from 'src/app/models/map/map-tile';
 import { Point } from 'src/app/models/map/point';
-import { FieldMapTile } from 'src/app/models/map/field.map-tile';
-import { WaterMapTile } from 'src/app/models/map/water.map-tile';
-import { ForestMapTile } from 'src/app/models/map/forest.map-tile';
-import { RoadMapTile } from 'src/app/models/map/road.map-tile';
 import { MapTileType } from 'src/app/models/enums/map-tile-type';
 
 export class MapFactory {
@@ -29,38 +25,21 @@ export class MapFactory {
 
     /**
      * 
-     * @param forestPercentage <b>from 0 to 100 </b> 
-     * @param waterPercentage <b>from 0 to 100 </b> 
+     * @param forestPercentage from 0 to 100 
+     * @param waterPercentage from 0 to 100 
      */
-     public create(size :number, forestPercentage :number, waterPercentage :number){
-        let newMap = new SquareMap();
-        newMap.size = size;
-
+    public create(size :number, forestPercentage :number, waterPercentage :number) : SquareMap{
+        let newMap = new SquareMap(size);
+        this.fillGrid(newMap,forestPercentage,waterPercentage);
+        return newMap;
     }
     private calculateNumberOfTiles(percentage : number, numberOfTiles : number) :number {
         return percentage*numberOfTiles/100;
     }
-    
-    private getRandomTileType(generateWater : boolean = true, generateForest : boolean = true) :MapTileType{
-        let newTileType : MapTileType;
-        if (generateWater && generateForest){
-            newTileType = this.DigitGenerator.getRandomNumber(3);
-        }
-        else if(generateWater && !generateForest){
-            newTileType = this.DigitGenerator.getRandomNumber(1);
-        }
-        else if(generateForest && !generateWater){
-            if (this.DigitGenerator.getRandomBoolean()){
-                newTileType = MapTileType.Forest;
-            }
-            else{
-                newTileType = MapTileType.Field;
-            }
-        }
-        else{
-            newTileType = MapTileType.Field;
-        }
-        return newTileType;
+
+    private getRandomTileType(tileTypes : MapTileType[]) :MapTileType{
+        let randomIndex : number = this.DigitGenerator.getRandomNumber(tileTypes.length);
+        return tileTypes[randomIndex];
     }
 
     /**
@@ -68,8 +47,15 @@ export class MapFactory {
      * @param generateForest initially true
      */
     private generateRandomTile(position : Point, generateWater : boolean = true, generateForest : boolean = true) :MapTile{
+        let tileTypes: MapTileType[] = [MapTileType.Field];
+        if (generateWater){
+            tileTypes.push(MapTileType.Water);
+        }
+        if (generateForest){
+            tileTypes.push(MapTileType.Forest);
+        }
         let newTile : MapTile;
-        switch (this.getRandomTileType(generateWater,generateForest)) {
+        switch (this.getRandomTileType(tileTypes)) {
             case 0:
                 newTile = this.FieldFactory.create(position);
                 break;
@@ -78,21 +64,39 @@ export class MapFactory {
                 break;
             case 2:
                 newTile = this.ForestFactory.create(position);
-                break;
-        } 
+                break;        
+        }
         return newTile;
     }
 
-    private fillGrid(map : SquareMap, forestPercentage : number, waterPercentage: number) :void{
+    private fillGrid(map : SquareMap, maxForestPercentage : number, maxWaterPercentage: number) :void{
         let width :number = map.size;
         let height :number = map.size;
         let numberOfTiles :number = width*height;
-        let numberOfWaterTiles = this.calculateNumberOfTiles(waterPercentage,numberOfTiles);
-        let numberOfForestTiles = this.calculateNumberOfTiles(forestPercentage,numberOfTiles);
+        let numberOfWaterTiles :number = 0;
+        let numberOfForestTiles :number = 0;
+        let generateForest :boolean = true;
+        let generateWater :boolean = true;
+        let designatedNumberOfWaterTiles :number = this.calculateNumberOfTiles(maxWaterPercentage,numberOfTiles);
+        let designatedNumberOfForestTiles :number= this.calculateNumberOfTiles(maxForestPercentage,numberOfTiles);
         for (let y = 0; y < height; y++){
             for (let x = 0; x < width; x++){
+                let newTile = this.generateRandomTile(new Point(x,y),generateWater,generateForest);
+                // console.log(newTile);
+                map.grid[y][x] = newTile;
                 
-
+                if (newTile.type == MapTileType.Forest){
+                    numberOfForestTiles++;
+                }
+                else if(newTile.type == MapTileType.Water){
+                    numberOfWaterTiles++;
+                }
+                
+                if (numberOfWaterTiles >= designatedNumberOfWaterTiles){
+                    generateWater = false;
+                }else if(numberOfForestTiles >= designatedNumberOfForestTiles){
+                    generateForest = false;
+                }
             }
         }
     }
