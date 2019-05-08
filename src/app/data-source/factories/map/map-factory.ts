@@ -1,5 +1,4 @@
 import { ForestMapTileFactory } from './forest.map-tile-factory';
-import { RoadMapTileFactory } from './road.map-tile-factory';
 import { FieldMapTileFactory } from './field.map-tile-factory';
 import { SquareMap } from 'src/app/models/map/square-map';
 import { WaterMapTileFactory } from './river.map-tile-factory';
@@ -7,10 +6,10 @@ import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { MapTile } from 'src/app/models/map/map-tile';
 import { Point } from 'src/app/models/map/point';
 import { MapTileType } from 'src/app/models/enums/map-tile-type';
+import { RoadOnMapFactory } from './road-on-map-factory';
 
 export class MapFactory {
     private ForestFactory: ForestMapTileFactory;
-    private RoadFactory: RoadMapTileFactory;
     private FieldFactory: FieldMapTileFactory;
     private WaterFactory: WaterMapTileFactory;
     private DigitGenerator: DigitGenerator;
@@ -18,7 +17,6 @@ export class MapFactory {
     constructor() {
         this.FieldFactory = new FieldMapTileFactory();
         this.ForestFactory = new ForestMapTileFactory();
-        this.RoadFactory = new RoadMapTileFactory();
         this.WaterFactory = new WaterMapTileFactory();
         this.DigitGenerator = new DigitGenerator();
     }

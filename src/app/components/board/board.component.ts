@@ -19,8 +19,8 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let mapGenerator = new MapFactory();
-    let map = mapGenerator.create(4,50,50);
+    let seed: Seed = new Seed();
+    let map: SquareMap = seed.seedMap();
     console.log(map);
   }
 

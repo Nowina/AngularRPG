@@ -9,29 +9,43 @@ import { ClothingPart } from 'src/app/models/item/clothing-part.item';
 import { SquareMap } from 'src/app/models/map/square-map';
 import { MapUtilities } from 'src/app/utilities/map-utilities';
 import { MapFactory } from '../factories/map/map-factory';
+import { RoadOnMapFactory } from '../factories/map/road-on-map-factory';
+import { mapChildrenIntoArray } from '@angular/router/src/url_tree';
 
 export class Seed {
     private WeaponFactory: WeaponFactory;
     private BackpackFactory: BackpackFactory;
     private ClothingFactory: ClothingFactory;
     private MapFactory: MapFactory;
+    private RoadOnMapGenerator: RoadOnMapFactory;
     private WarriorFactory: WarriorFactory;
     private map: SquareMap;
     private mapUtils: MapUtilities;
 
     constructor() {
         this.MapFactory = new MapFactory();
-        this.map = this.MapFactory.create(5);
-        this.mapUtils = new MapUtilities(this.map);
+
         this.WeaponFactory = new WeaponFactory();
+
         this.WarriorFactory = new WarriorFactory(this.mapUtils);
+        
         this.ClothingFactory = new ClothingFactory();
+        
         this.BackpackFactory = new BackpackFactory();
     }
+
     public seedData(itemRepo: ItemRepository): void {
         itemRepo.addArray(this.getWeapons());
         itemRepo.addArray(this.getBackpacks());
         itemRepo.addArray(this.getClothing());
+    }
+
+    public seedMap(): SquareMap{
+        this.map = this.MapFactory.create(5);
+        this.mapUtils = new MapUtilities(this.map);
+        this.RoadOnMapGenerator = new RoadOnMapFactory(this.map);
+        this.RoadOnMapGenerator.createRoad(4);
+        return this.map;
     }
 
     private getWeapons(): Weapon[] {
