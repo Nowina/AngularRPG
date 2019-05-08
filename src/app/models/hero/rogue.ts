@@ -1,5 +1,5 @@
 import { Hero } from './hero';
 
-export class Rogue extends Hero{
-    public swiftness : number;
+export class Rogue extends Hero {
+    public swiftness: number;
 }
