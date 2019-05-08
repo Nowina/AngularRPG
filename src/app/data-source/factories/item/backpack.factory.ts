@@ -11,7 +11,7 @@ export class BackpackFactory extends ItemFactory {
     public create(name: string, level: number): Backpack {
         let newItem = new Backpack;
         this.fillBaseItemData(newItem, name, level);
-        newItem.capacity = level * 3;
+        newItem.maxCapacity = level * 3;
         newItem.isEquipped = false;
         return newItem;
     }

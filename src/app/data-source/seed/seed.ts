@@ -35,9 +35,9 @@ export class Seed {
     }
 
     public seedData(itemRepo: ItemRepository): void {
-        itemRepo.addArray(this.getWeapons());
-        itemRepo.addArray(this.getBackpacks());
-        itemRepo.addArray(this.getClothing());
+        itemRepo.addArray(this.seedWeapons());
+        itemRepo.addArray(this.seedBackpacks());
+        itemRepo.addArray(this.seedClothing());
     }
 
     public seedMap(): SquareMap{
@@ -48,21 +48,21 @@ export class Seed {
         return this.map;
     }
 
-    private getWeapons(): Weapon[] {
+    private seedWeapons(): Weapon[] {
         let weapons: Weapon[] = [];
         weapons.push(this.WeaponFactory.create("Sword", 1, 1, 10));
         weapons.push(this.WeaponFactory.create("Bow", 2, 5, 8));
         return weapons;
     }
 
-    private getBackpacks(): Backpack[] {
+    private seedBackpacks(): Backpack[] {
         let backpacks: Backpack[] = [];
         backpacks.push(this.BackpackFactory.create("Small Backpack", 2));
         backpacks.push(this.BackpackFactory.create("Big backpack", 3));
         return backpacks;
     }
 
-    private getClothing(): ClothingPart[] {
+    private seedClothing(): ClothingPart[] {
         let clothing: ClothingPart[] = [];
         clothing.push(this.ClothingFactory.create("Pants", 1, 1, 2))
         clothing.push(this.ClothingFactory.create("Ghillie", 10, 10, 4));
