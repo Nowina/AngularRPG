@@ -24,19 +24,29 @@ export class RoadOnMapFactory {
             roadArray.push(currentPoint);
             previousPoint = currentPoint;
         }
-        console.log(roadArray);
         return roadArray;
     }
+    private checkIfPointIsOnMap(point: Point): boolean {
+        if (point.x >= this.map.size || point.x < 0 || point.y >= this.map.size || point.y < 0){
+            return false;
+        }
+        else{
+            return true;
+        }
 
+    }
+    
     /**
      * create randomly starting road on given map 
      */
-    public createRoad(maxLength: number): void{
+    public createRoad(maxLength: number): void {
         let roadArray = this.createRandomRoadArray(maxLength);
         for (let i = 0; i < roadArray.length; i++) {
-            let roadX = roadArray[i].x;
-            let roadY = roadArray[i].y;
-            this.map.grid[roadY][roadX] = this.RoadFactory.create(new Point(roadX, roadY));
+            if (this.checkIfPointIsOnMap(roadArray[i])){
+                let roadX = roadArray[i].x;
+                let roadY = roadArray[i].y;
+                this.map.grid[roadY][roadX] = this.RoadFactory.create(new Point(roadX, roadY));
+            }
         }
     }
 
