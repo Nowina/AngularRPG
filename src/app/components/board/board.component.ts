@@ -20,15 +20,15 @@ export class BoardComponent implements OnInit {
   ngOnInit() {
     let seed: Seed = new Seed();
     let map: SquareMap = seed.seedMap();
-    let itemRepo : ItemRepository = new ItemRepository();
+    let itemRepo: ItemRepository = new ItemRepository();
     seed.seedData(itemRepo);
     let backpack = itemRepo.getBackpacks()[0];
     let weapons = itemRepo.getWeapons();
     let ContainerService: IContainerService = new IContainerService();
-    ContainerService.addItemsToContainer(weapons,backpack);
-    console.log(backpack);
-    // console.log(ContainerService.getItemsFromContainer(backpack));
-  
+    ContainerService.addItemsToContainer(weapons, backpack);
+    ContainerService.removeFromContainer(weapons[0], backpack);
+    console.log(ContainerService.getItemsFromContainer(backpack));
+
   }
 
 
