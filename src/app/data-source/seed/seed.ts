@@ -1,4 +1,3 @@
-import { WarriorFactory } from '../factories/hero/warrior.factory';
 import { WeaponFactory } from '../factories/item/weapon.factory';
 import { ItemRepository } from '../repositories/item-repository';
 import { BackpackFactory } from '../factories/item/backpack.factory';
@@ -10,7 +9,6 @@ import { SquareMap } from 'src/app/models/map/square-map';
 import { MapUtilities } from 'src/app/utilities/map-utilities';
 import { MapFactory } from '../factories/map/map-factory';
 import { RoadOnMapFactory } from '../factories/map/road-on-map-factory';
-import { mapChildrenIntoArray } from '@angular/router/src/url_tree';
 
 export class Seed {
     private WeaponFactory: WeaponFactory;
@@ -18,7 +16,6 @@ export class Seed {
     private ClothingFactory: ClothingFactory;
     private MapFactory: MapFactory;
     private RoadOnMapGenerator: RoadOnMapFactory;
-    private WarriorFactory: WarriorFactory;
     private map: SquareMap;
     private mapUtils: MapUtilities;
 
@@ -26,8 +23,6 @@ export class Seed {
         this.MapFactory = new MapFactory();
 
         this.WeaponFactory = new WeaponFactory();
-
-        this.WarriorFactory = new WarriorFactory(this.mapUtils);
         
         this.ClothingFactory = new ClothingFactory();
         

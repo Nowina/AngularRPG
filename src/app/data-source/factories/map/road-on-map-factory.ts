@@ -26,6 +26,7 @@ export class RoadOnMapFactory {
         }
         return roadArray;
     }
+    
     private checkIfPointIsOnMap(point: Point): boolean {
         if (point.x >= this.map.size || point.x < 0 || point.y >= this.map.size || point.y < 0){
             return false;

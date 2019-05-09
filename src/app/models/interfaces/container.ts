@@ -1,7 +1,8 @@
 import { Item } from '../item/item';
+import { IPickable } from './pickable';
 
 export interface IContainer {
-    items: Item[];
+    items: IPickable[];
     maxCapacity: number;
     currentCapacity: number;
 }

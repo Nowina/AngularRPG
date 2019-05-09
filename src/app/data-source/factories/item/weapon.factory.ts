@@ -10,6 +10,7 @@ export class WeaponFactory extends ItemFactory {
     public create(name: string, level: number, damage: number, range: number): Weapon {
         let newItem = new Weapon;
         this.fillBaseItemData(newItem, name, level);
+        newItem.pickFlag = true;
         newItem.usageFactor = damage;
         newItem.range = range;
         newItem.isEquipped = false;

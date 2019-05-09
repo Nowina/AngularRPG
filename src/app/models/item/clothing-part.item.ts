@@ -1,8 +1,7 @@
 import { Item } from './item';
 import { Hero } from '../hero/hero';
-import { IEquipable } from '../interfaces/equipable';
 
-export class ClothingPart extends Item implements IEquipable {
+export class ClothingPart extends Item  {
     public owner: Hero;
     public armor: number;
     public camouflageFactor: number;

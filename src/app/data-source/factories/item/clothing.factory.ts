@@ -11,6 +11,7 @@ export class ClothingFactory extends ItemFactory {
     public create(name: string, level: number, armor: number, camouflageFactor: number): ClothingPart {
         let newItem = new ClothingPart;
         this.fillBaseItemData(newItem, name, level);
+        newItem.pickFlag = true;
         newItem.armor = armor
         newItem.camouflageFactor = camouflageFactor;
         newItem.isEquipped = false;
