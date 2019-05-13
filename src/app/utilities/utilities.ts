@@ -5,15 +5,15 @@ export class Utilitis {
         switch (item.type) {
             case ItemType.Backpack:
                 return item.level * 10;
-                break;
 
             case ItemType.Weapon:
                 return item.level * 15;
-                break;
 
             case ItemType.ClothingPart:
                 return item.level * 5;
-                break;
+                
+            default:
+                new Error(`No mapping for item type: ${item.type}`);
         }
     }
 }

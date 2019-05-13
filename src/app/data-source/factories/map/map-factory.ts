@@ -6,7 +6,6 @@ import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { MapTile } from 'src/app/models/map/map-tile';
 import { Point } from 'src/app/models/map/point';
 import { MapTileType } from 'src/app/models/enums/map-tile-type';
-import { RoadOnMapFactory } from './road-on-map-factory';
 
 export class MapFactory {
     private ForestFactory: ForestMapTileFactory;
@@ -31,6 +30,7 @@ export class MapFactory {
         this.fillGrid(newMap, forestPercentage, waterPercentage);
         return newMap;
     }
+
     private calculateNumberOfTiles(percentage: number, numberOfTiles: number): number {
         return percentage * numberOfTiles / 100;
     }

@@ -2,14 +2,15 @@ import { RoadMapTileFactory } from './road.map-tile-factory';
 import { SquareMap } from 'src/app/models/map/square-map';
 import { MapUtilities } from 'src/app/utilities/map-utilities';
 import { Point } from 'src/app/models/map/point';
+import { DigitGenerator } from 'src/app/utilities/digit-generator';
 
 export class RoadOnMapFactory {
     private RoadFactory: RoadMapTileFactory;
     private MapUtils: MapUtilities;
 
-    constructor(private map: SquareMap) {
+    constructor(private map: SquareMap,digitGenerator: DigitGenerator) {
         this.map = map;
-        this.MapUtils = new MapUtilities(this.map);
+        this.MapUtils = new MapUtilities(this.map, digitGenerator);
         this.RoadFactory = new RoadMapTileFactory();
     }
 

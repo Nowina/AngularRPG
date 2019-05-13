@@ -1,12 +1,12 @@
 import { HeroFactory } from './hero.factory';
 import { HeroType } from 'src/app/models/enums/hero-type';
 import { Warrior } from 'src/app/models/hero/warrior';
-import { MapUtilities } from 'src/app/utilities/map-utilities';
+import { DigitGenerator } from 'src/app/utilities/digit-generator';
 
 
 export class WarriorFactory extends HeroFactory {
-    constructor(mapUtils: MapUtilities) {
-        super(HeroType.Warrior, mapUtils);
+    constructor(digitGenerator: DigitGenerator) {
+        super(HeroType.Warrior,digitGenerator);
     }
 
     public create(name: string, level: number): Warrior {

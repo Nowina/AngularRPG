@@ -12,8 +12,8 @@ export class BackpackFactory extends ItemFactory {
         let newItem = new Backpack;
         this.fillBaseItemData(newItem, name, level);
         newItem.pickFlag = false;
-        newItem.maxCapacity = level * 3;
-        newItem.currentCapacity = 0;
+        newItem.maxItemsWeight = level * 20;
+        newItem.currentItemsWeight = 0;
         newItem.isEquipped = false;
         newItem.items = [];
         return newItem;

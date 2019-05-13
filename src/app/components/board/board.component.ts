@@ -5,8 +5,9 @@ import { ItemRepository } from 'src/app/data-source/repositories/item-repository
 
 import { ItemType } from 'src/app/models/enums/item-type';
 import { Backpack } from 'src/app/models/item/backpack.item';
-import { IContainerService } from 'src/app/services/container-service';
+import { IContainerService } from 'src/app/services/container.service';
 import { Weapon } from 'src/app/models/item/weapon.item';
+import { DigitGenerator } from 'src/app/utilities/digit-generator';
 
 @Component({
   selector: 'app-board',
@@ -18,18 +19,17 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let seed: Seed = new Seed();
+    let seed: Seed = new Seed(new DigitGenerator());
     let map: SquareMap = seed.seedMap();
     let itemRepo: ItemRepository = new ItemRepository();
     seed.seedData(itemRepo);
     let backpack = itemRepo.getBackpacks()[0];
     let weapons = itemRepo.getWeapons();
     let ContainerService: IContainerService = new IContainerService();
+    
     ContainerService.addItemsToContainer(weapons, backpack);
-    ContainerService.removeFromContainer(weapons[0], backpack);
     console.log(ContainerService.getItemsFromContainer(backpack));
 
   }
-
 
 }
