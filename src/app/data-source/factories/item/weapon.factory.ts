@@ -13,7 +13,7 @@ export class WeaponFactory extends ItemFactory {
         newItem.pickFlag = true;
         newItem.usageFactor = damage;
         newItem.range = range;
-        newItem.isEquipped = false;
+        newItem.pickFlag = true;
         return newItem;
     }
 }

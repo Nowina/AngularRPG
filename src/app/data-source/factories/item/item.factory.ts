@@ -18,6 +18,7 @@ export abstract class ItemFactory {
         item.status = ItemStatus.Active;
         item.type = this.itemType;
         item.weight = this.utilitis.calculateItemWeight(item);
+        item.isEquipped = false;
     }
 
 }

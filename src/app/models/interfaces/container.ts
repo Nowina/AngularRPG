@@ -6,4 +6,5 @@ export interface IContainer {
     items: IPickable[];
     maxItemsWeight: number;
     currentItemsWeight: number;
+    containerWeight: number;
 }

@@ -3,6 +3,7 @@ import { IContainer } from '../models/interfaces/container';
 import { IPickable } from '../models/interfaces/pickable';
 
 export class IContainerService {
+    constructor () {}
 
     public canPickItem(item: IPickable, container: IContainer): boolean {
         if ((container.currentItemsWeight + item.weight <= container.maxItemsWeight) && (item.pickFlag)) {
@@ -12,11 +13,12 @@ export class IContainerService {
             return false;
         }
     }
-
+    
     public addItemToContainer(item: IPickable, container: IContainer): void {
         if (this.canPickItem(item, container)) {
             container.items.push(item);
             container.currentItemsWeight += item.weight;
+            container.containerWeight += item.weight;
         }
     }
 
@@ -43,6 +45,7 @@ export class IContainerService {
         let itemIndex = container.items.indexOf(item);
         container.items.splice(itemIndex, 1);
         container.currentItemsWeight -= item.weight;
+        container.containerWeight -= item.weight;
     }
 
     public getItemsFromContainer(container: IContainer): IPickable[] {

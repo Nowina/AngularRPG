@@ -8,6 +8,10 @@ import { Backpack } from 'src/app/models/item/backpack.item';
 import { IContainerService } from 'src/app/services/container.service';
 import { Weapon } from 'src/app/models/item/weapon.item';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
+import { MageFactory } from 'src/app/data-source/factories/hero/mage.factory';
+import { IContainerHandlerService } from 'src/app/services/container-handler.service';
+import { Mage } from 'src/app/models/hero/mage';
+import { ClothingPart } from 'src/app/models/item/clothing-part.item';
 
 @Component({
   selector: 'app-board',
@@ -23,13 +27,20 @@ export class BoardComponent implements OnInit {
     let map: SquareMap = seed.seedMap();
     let itemRepo: ItemRepository = new ItemRepository();
     seed.seedData(itemRepo);
-    let backpack = itemRepo.getBackpacks()[0];
-    let weapons = itemRepo.getWeapons();
-    let ContainerService: IContainerService = new IContainerService();
-    
-    ContainerService.addItemsToContainer(weapons, backpack);
-    console.log(ContainerService.getItemsFromContainer(backpack));
 
+    let backpack: Backpack = itemRepo.getBackpacks()[0];
+    let weapons: Weapon[] = itemRepo.getWeapons();
+    let clothing: ClothingPart[] = itemRepo.getClothingParts();
+    
+    let hero: Mage = new MageFactory(new DigitGenerator()).create("Johny Bravo",10);
+    
+    let containerService: IContainerService = new IContainerService();
+    let equipmentService = new IContainerHandlerService(containerService);
+    
+    equipmentService.addContainerToHandler(backpack,hero);
+    equipmentService.addItemsToContainer(weapons,hero);
+    
+    console.log(hero);
   }
 
 }

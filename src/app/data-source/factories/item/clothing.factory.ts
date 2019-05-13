@@ -14,7 +14,7 @@ export class ClothingFactory extends ItemFactory {
         newItem.pickFlag = true;
         newItem.armor = armor
         newItem.camouflageFactor = camouflageFactor;
-        newItem.isEquipped = false;
+        newItem.pickFlag = true;
         return newItem;
     }
 }

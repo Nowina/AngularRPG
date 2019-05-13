@@ -4,7 +4,7 @@ export class Utilitis {
     public calculateItemWeight(item: Item): number {
         switch (item.type) {
             case ItemType.Backpack:
-                return item.level * 10;
+                return item.level * 6;
 
             case ItemType.Weapon:
                 return item.level * 15;

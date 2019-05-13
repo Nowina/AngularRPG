@@ -6,8 +6,7 @@ import { IPickable } from '../interfaces/pickable';
 export class Backpack extends Item implements IContainer {
     public maxItemsWeight: number;
     public currentItemsWeight: number;
-    
+    public containerWeight: number;
     public items: IPickable[];
     public owner: Hero;
-    public isEquipped: boolean;
 }

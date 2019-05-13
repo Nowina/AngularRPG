@@ -23,5 +23,8 @@ export abstract class HeroFactory {
         hero.experience = 0;
         hero.armor = this.DigitGenerator.getRandomNumber(level * 10);
         hero.heroType = this.heroType;
+        hero.maxLoad = hero.strength*5;
+        hero.currentLoad = 0;
+        hero.container = null;
     }
 }
