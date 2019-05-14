@@ -12,6 +12,9 @@ import { MageFactory } from 'src/app/data-source/factories/hero/mage.factory';
 import { IContainerHandlerService } from 'src/app/services/container-handler.service';
 import { Mage } from 'src/app/models/hero/mage';
 import { ClothingPart } from 'src/app/models/item/clothing-part.item';
+import { Equipment } from 'src/app/models/other/equipment';
+import { IEquipmentService } from 'src/app/services/equipment.service';
+import { EquipmentFactory } from 'src/app/data-source/factories/other/equipment.factory';
 
 @Component({
   selector: 'app-board',
@@ -32,15 +35,21 @@ export class BoardComponent implements OnInit {
     let weapons: Weapon[] = itemRepo.getWeapons();
     let clothing: ClothingPart[] = itemRepo.getClothingParts();
     
-    let hero: Mage = new MageFactory(new DigitGenerator()).create("Johny Bravo",10);
+    let hero = new MageFactory( new DigitGenerator() , new EquipmentFactory() ).create("Johny Bravo",10);
+
+    let equipment: Equipment = hero.equipment;
+    let equipmentService: IEquipmentService = new IEquipmentService(new IContainerService());
+    let containerHandlerService: IContainerHandlerService = new IContainerHandlerService(new IContainerService());
+    console.log(weapons);
     
-    let containerService: IContainerService = new IContainerService();
-    let equipmentService = new IContainerHandlerService(containerService);
+    equipmentService.addItemToEquipment(backpack,equipment);
+
+    containerHandlerService.addItemToContainer(weapons[1],equipment);
+
+    console.log(equipment);
     
-    equipmentService.addContainerToHandler(backpack,hero);
-    equipmentService.addItemsToContainer(weapons,hero);
     
-    console.log(hero);
+  
   }
 
 }

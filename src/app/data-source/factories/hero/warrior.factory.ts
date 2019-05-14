@@ -2,11 +2,12 @@ import { HeroFactory } from './hero.factory';
 import { HeroType } from 'src/app/models/enums/hero-type';
 import { Warrior } from 'src/app/models/hero/warrior';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
+import { EquipmentFactory } from '../other/equipment.factory';
 
 
 export class WarriorFactory extends HeroFactory {
-    constructor(digitGenerator: DigitGenerator) {
-        super(HeroType.Warrior,digitGenerator);
+    constructor(digitGenerator: DigitGenerator, EquipmentFactory: EquipmentFactory) {
+        super(HeroType.Warrior,digitGenerator, EquipmentFactory);
     }
 
     public create(name: string, level: number): Warrior {

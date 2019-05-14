@@ -3,6 +3,7 @@ import { ItemType } from 'src/app/models/enums/item-type';
 import { Weapon } from 'src/app/models/item/weapon.item';
 
 export class WeaponFactory extends ItemFactory {
+    
     constructor() {
         super(ItemType.Weapon);
     }

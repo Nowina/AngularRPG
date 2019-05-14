@@ -1,14 +1,10 @@
 import { Point } from '../map/point';
 import { HeroStatus } from '../enums/hero-status';
 import { HeroType } from '../enums/hero-type';
-import { IContainerHandler } from '../interfaces/container-handler';
-import { IContainer } from '../interfaces/container';
+import { Equipment } from '../other/equipment';
 
-export abstract class Hero implements IContainerHandler {
-    public maxLoad: number;
-    public currentLoad: number;
-    public container: IContainer;
-
+export abstract class Hero {
+    public equipment: Equipment;
     public name: string;
     public health: number;
     public stamina: number;

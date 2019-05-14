@@ -48,14 +48,14 @@ export class Seed {
 
     private seedWeapons(): Weapon[] {
         let weapons: Weapon[] = [];
-        weapons.push(this.WeaponFactory.create("Sword", 1, 1, 10));
-        weapons.push(this.WeaponFactory.create("Bow", 2, 5, 8));
+        weapons.push(this.WeaponFactory.create("Sword", 1, 1, 1));
+        weapons.push(this.WeaponFactory.create("Bow", 2, 5, 1));
         return weapons;
     }
 
     private seedBackpacks(): Backpack[] {
         let backpacks: Backpack[] = [];
-        backpacks.push(this.BackpackFactory.create("Small Backpack", 10));
+        backpacks.push(this.BackpackFactory.create("Small Backpack", 1));
         backpacks.push(this.BackpackFactory.create("Big backpack", 3));
         return backpacks;
     }

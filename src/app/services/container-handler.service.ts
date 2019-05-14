@@ -1,4 +1,3 @@
-import { Item } from '../models/item/item';
 import { IContainerHandler } from '../models/interfaces/container-handler';
 import { IContainerService } from './container.service';
 import { IPickable } from '../models/interfaces/pickable';
@@ -12,7 +11,7 @@ export class IContainerHandlerService {
             containerHandler.container = container;
         }
     }
-
+    
     public checkIfHandlerHasAContainer(containerHandler: IContainerHandler): boolean {
         return (containerHandler.container != null)
     }
