@@ -7,7 +7,7 @@ export class BackpackFactory extends ItemFactory {
     constructor() {
         super(ItemType.Backpack);
     }
-
+    
     public create(name: string, level: number): Backpack {
         let newItem = new Backpack;
         this.fillBaseItemData(newItem, name, level);

@@ -18,7 +18,6 @@ export class IContainerService {
         if (this.canPickItem(item, container)) {
             container.items.push(item);
             container.currentItemsWeight += item.weight;
-            container.containerWeight += item.weight;
         }
     }
 
@@ -45,7 +44,6 @@ export class IContainerService {
         let itemIndex = container.items.indexOf(item);
         container.items.splice(itemIndex, 1);
         container.currentItemsWeight -= item.weight;
-        container.containerWeight -= item.weight;
     }
 
     public getItemsFromContainer(container: IContainer): IPickable[] {

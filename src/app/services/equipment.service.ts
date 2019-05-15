@@ -2,23 +2,21 @@ import { IEquipable } from '../models/interfaces/equipable';
 import { IEquipment } from '../models/interfaces/equipment';
 import { Item } from '../models/item/item';
 import { ItemType } from '../models/enums/item-type';
-import { IContainerService } from './container.service';
-import { IPickable } from '../models/interfaces/pickable';
 import { Backpack } from '../models/item/backpack.item';
 
 export class IEquipmentService {
-    constructor (private containerService: IContainerService) {}
+    constructor () {}
+
+    private isSlotEmpty(item: IEquipable, equipment: IEquipment): boolean {
+        return !equipment.filledSlots.has(item.type);
+    }
+
+    private hasFreeWeight(item: IEquipable, equipment: IEquipment): boolean {
+        return (equipment.currentLoad + item.weight <= equipment.maxLoad);
+    }
 
     public canEquipItem(item: IEquipable, equipment: IEquipment): boolean {
-        if (equipment.filledSlots.has(item.type)){
-            return false;
-        }
-        else if (equipment.currentLoad + item.weight <= equipment.maxLoad){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return ( this.isSlotEmpty(item, equipment) && this.hasFreeWeight(item, equipment) ); 
     }
     
     public addItemToEquipment(item: IEquipable, equipment: IEquipment): void {
@@ -55,8 +53,17 @@ export class IEquipmentService {
         if (!this.checkIfContainsItem(item, equipment)) {
             return;
         }
-        let itemIndex = equipment.items.indexOf(item);
-        equipment.items.splice(itemIndex, 1);
+
+        if (item.type == ItemType.Backpack){
+            let backpack = item as Backpack;
+            equipment.container = null;
+            equipment.currentLoad -= backpack.currentItemsWeight;
+        }
+        else {
+            let itemIndex = equipment.items.indexOf(item);
+            equipment.items.splice(itemIndex, 1);  
+            
+        }
         equipment.currentLoad -= item.weight;
         equipment.filledSlots.delete(item.type);
     }
@@ -64,6 +71,5 @@ export class IEquipmentService {
     public getItemsFromEquipment(equipment: IEquipment): IEquipable[] {
         return equipment.items as Item[];
     }
-
 
 }

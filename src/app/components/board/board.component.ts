@@ -34,22 +34,22 @@ export class BoardComponent implements OnInit {
     let backpack: Backpack = itemRepo.getBackpacks()[0];
     let weapons: Weapon[] = itemRepo.getWeapons();
     let clothing: ClothingPart[] = itemRepo.getClothingParts();
-    
-    let hero = new MageFactory( new DigitGenerator() , new EquipmentFactory() ).create("Johny Bravo",10);
+
+    let hero = new MageFactory(new DigitGenerator(), new EquipmentFactory()).create("Johny Bravo", 10);
 
     let equipment: Equipment = hero.equipment;
-    let equipmentService: IEquipmentService = new IEquipmentService(new IContainerService());
+    let equipmentService: IEquipmentService = new IEquipmentService();
     let containerHandlerService: IContainerHandlerService = new IContainerHandlerService(new IContainerService());
-    console.log(weapons);
-    
-    equipmentService.addItemToEquipment(backpack,equipment);
 
-    containerHandlerService.addItemToContainer(weapons[1],equipment);
+    equipmentService.addItemToEquipment(backpack, equipment);
+    equipmentService.addItemToEquipment(clothing[0], equipment);
 
+    containerHandlerService.addItemToContainer(weapons[1], equipment);
     console.log(equipment);
-    
-    
-  
+
+    equipmentService.removeFromEquipment(backpack,equipment);
+
+
   }
 
 }
