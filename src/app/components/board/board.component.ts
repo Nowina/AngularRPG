@@ -15,6 +15,14 @@ import { ClothingPart } from 'src/app/models/item/clothing-part.item';
 import { Equipment } from 'src/app/models/other/equipment';
 import { IEquipmentService } from 'src/app/services/equipment.service';
 import { EquipmentFactory } from 'src/app/data-source/factories/other/equipment.factory';
+import { MovementService } from 'src/app/services/movement.service';
+import { Directions } from 'src/app/utilities/directions';
+import { Warrior } from 'src/app/models/hero/warrior';
+import { WarriorFactory } from 'src/app/data-source/factories/hero/warrior.factory';
+import { Point } from 'src/app/models/map/point';
+import { QuadrantDirectionsEnum } from 'src/app/models/enums/quadrant-directions';
+import { OctileDirectionsEnum } from 'src/app/models/enums/octile-direction';
+import { MapTileStatus } from 'src/app/models/enums/map-tile-status';
 
 @Component({
   selector: 'app-board',
@@ -31,25 +39,14 @@ export class BoardComponent implements OnInit {
     let itemRepo: ItemRepository = new ItemRepository();
     seed.seedData(itemRepo);
 
-    let backpack: Backpack = itemRepo.getBackpacks()[0];
-    let weapons: Weapon[] = itemRepo.getWeapons();
-    let clothing: ClothingPart[] = itemRepo.getClothingParts();
+    let hero: Warrior = new WarriorFactory(new DigitGenerator(), new EquipmentFactory()).create("JohnyBravo",1);
 
-    let hero = new MageFactory(new DigitGenerator(), new EquipmentFactory()).create("Johny Bravo", 10);
-
-    let equipment: Equipment = hero.equipment;
-    let equipmentService: IEquipmentService = new IEquipmentService();
-    let containerHandlerService: IContainerHandlerService = new IContainerHandlerService(new IContainerService());
-
-    equipmentService.addItemToEquipment(backpack, equipment);
-    equipmentService.addItemToEquipment(clothing[0], equipment);
-
-    containerHandlerService.addItemToContainer(weapons[1], equipment);
-    console.log(equipment);
-
-    equipmentService.removeFromEquipment(backpack,equipment);
-
-
+    let movementService: MovementService = new MovementService(new Directions());
+    movementService.placeOnMap(hero,map,new Point(0,0));
+    movementService.octileMove(hero, map, OctileDirectionsEnum.S);
+    movementService.octileMove(hero, map, OctileDirectionsEnum.E);
+    movementService.octileMove(hero, map, OctileDirectionsEnum.NW);
+    
+    map.logMapToConsole();
   }
-
 }

@@ -1,18 +1,11 @@
 import { DigitGenerator } from './digit-generator';
 import { Point } from '../models/map/point';
 import { SquareMap } from '../models/map/square-map';
+import { Directions } from './directions';
 
 export class MapUtilities {
 
-    public quadrantDirections: Point[] = [];
-    public octileDirections: Point[] = [];
-
-    constructor(private map: SquareMap, private digitGenerator: DigitGenerator) {
-        this.map = map;
-        this.digitGenerator = digitGenerator;
-        this.quadrantDirections = [new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0)];
-        this.octileDirections = [new Point(0, 1), new Point(1, 1), new Point(1, 0), new Point(1, -1), new Point(0, -1),
-        new Point(-1, 1), new Point(-1, 0), new Point(-1, 1)];
+    constructor(private map: SquareMap, private digitGenerator: DigitGenerator, private directions: Directions) {
     }
 
     /**
@@ -29,10 +22,10 @@ export class MapUtilities {
     public getRandomNextPoint(actualPosition: Point, octileOn: boolean = false): Point {
         let newPoint: Point;
         if (octileOn) {
-            newPoint = this.octileDirections[this.digitGenerator.getRandomNumber(this.octileDirections.length)];
+            newPoint = this.directions.getOctileDirection(this.digitGenerator.getRandomNumber(7));
         }
         else {
-            newPoint = this.quadrantDirections[this.digitGenerator.getRandomNumber(this.quadrantDirections.length)];
+            newPoint = this.directions.getQuadrantDirection(this.digitGenerator.getRandomNumber(4));
         }
         return new Point(actualPosition.x + newPoint.x, actualPosition.y + newPoint.y);
     }

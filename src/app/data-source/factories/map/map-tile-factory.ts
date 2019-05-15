@@ -1,6 +1,7 @@
 import { MapTileType } from 'src/app/models/enums/map-tile-type';
 import { MapTile } from 'src/app/models/map/map-tile';
 import { Point } from 'src/app/models/map/point';
+import { MapTileStatus } from 'src/app/models/enums/map-tile-status';
 
 export abstract class MapTileFactory {
     constructor(private type: MapTileType) {
@@ -11,5 +12,6 @@ export abstract class MapTileFactory {
         tile.movementSpeed = movementSpeed;
         tile.position = position;
         tile.type = this.type;
+        tile.status = MapTileStatus.Free;
     }
 }

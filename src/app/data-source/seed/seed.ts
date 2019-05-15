@@ -10,6 +10,7 @@ import { MapUtilities } from 'src/app/utilities/map-utilities';
 import { MapFactory } from '../factories/map/map-factory';
 import { RoadOnMapFactory } from '../factories/map/road-on-map-factory';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
+import { Directions } from 'src/app/utilities/directions';
 
 export class Seed {
     private WeaponFactory: WeaponFactory;
@@ -21,6 +22,7 @@ export class Seed {
     private mapUtils: MapUtilities;
 
     constructor(private digitGenerator: DigitGenerator) {
+
         this.MapFactory = new MapFactory();
 
         this.WeaponFactory = new WeaponFactory();
@@ -39,8 +41,8 @@ export class Seed {
     }
 
     public seedMap(): SquareMap{
-        this.map = this.MapFactory.create(5);
-        this.mapUtils = new MapUtilities(this.map,this.digitGenerator);
+        this.map = this.MapFactory.create(10);
+        this.mapUtils = new MapUtilities(this.map,this.digitGenerator, new Directions);
         this.RoadOnMapGenerator = new RoadOnMapFactory(this.map, this.digitGenerator);
         this.RoadOnMapGenerator.createRoad(4);
         return this.map;

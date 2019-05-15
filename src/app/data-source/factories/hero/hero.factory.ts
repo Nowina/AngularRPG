@@ -21,6 +21,7 @@ export abstract class HeroFactory {
         hero.experience = 0;
         hero.armor = this.DigitGenerator.getRandomNumber(level * 10);
         hero.heroType = this.heroType;
+        hero.movementSpeed = 2;
         this.EquipmentFactory.createAddEquipment(hero);
     }
 }

@@ -3,6 +3,7 @@ import { SquareMap } from 'src/app/models/map/square-map';
 import { MapUtilities } from 'src/app/utilities/map-utilities';
 import { Point } from 'src/app/models/map/point';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
+import { Directions } from 'src/app/utilities/directions';
 
 export class RoadOnMapFactory {
     private RoadFactory: RoadMapTileFactory;
@@ -10,7 +11,7 @@ export class RoadOnMapFactory {
 
     constructor(private map: SquareMap,digitGenerator: DigitGenerator) {
         this.map = map;
-        this.MapUtils = new MapUtilities(this.map, digitGenerator);
+        this.MapUtils = new MapUtilities(this.map, digitGenerator, new Directions);
         this.RoadFactory = new RoadMapTileFactory();
     }
 
