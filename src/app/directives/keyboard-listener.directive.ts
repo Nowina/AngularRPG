@@ -1,23 +1,24 @@
-import { HostListener, Directive} from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Directive, HostListener, Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Directive({
   selector: '[keyboardListener]'
 })
+
+@Injectable()
 export class KeyboardListener {
-  private keyboardSubject: Subject<KeyboardEvent>;
+  private keyboardSubject: Subject<String>;
   
   constructor (){
-    this.keyboardSubject = new Subject<KeyboardEvent>();
+    this.keyboardSubject = new Subject<String>();
   }
 
   @HostListener('window:keyup', ['$event'] )
   onKeyEvent(event: KeyboardEvent): void{
-      console.log("pressed");
-      this.keyboardSubject.next(event);
+      this.keyboardSubject.next(event.key);
   }
 
-  public getKeyboardSubject(): Observable<KeyboardEvent>{
+  public getKeyboardSubject(): Observable<String>{
     return this.keyboardSubject.asObservable();
   }
 }

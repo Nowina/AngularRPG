@@ -13,7 +13,8 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ShopItemFormComponent } from './components/shop-item-form/shop-item-form.component';
 import { ShopItemDetailsComponent } from './components/shop-item-details/shop-item-details.component';
 import { ShopItemListComponent } from './components/shop-item-list/shop-item-list.component';
-import { KeyboardListener } from './directives/keyboard-listener.directive'
+import { KeyboardListener } from './directives/keyboard-listener.directive';
+import { MapTileComponent } from './map-tile/map-tile.component'
 
 @NgModule({
   declarations: [
@@ -28,13 +29,14 @@ import { KeyboardListener } from './directives/keyboard-listener.directive'
     ShopItemFormComponent,
     ShopItemDetailsComponent,
     ShopItemListComponent,
-    KeyboardListener
+    KeyboardListener,
+    MapTileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [KeyboardListener],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

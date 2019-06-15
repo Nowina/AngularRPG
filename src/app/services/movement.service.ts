@@ -5,18 +5,14 @@ import { Directions } from '../utilities/directions';
 import { MapTileStatus } from '../models/enums/map-tile-status';
 import { QuadrantDirectionsEnum } from '../models/enums/quadrant-directions';
 import { OctileDirectionsEnum } from '../models/enums/octile-direction';
-import { KeyboardListener } from '../directives/keyboard-listener.directive';
+
 
 export class MovementService {
     
-    constructor (private direction: Directions, private keyboardListener: KeyboardListener) {
-        this.keyboardListener.getKeyboardSubject().subscribe(
-            (data) => {
-                console.log(data);
-            }
-        );
+    constructor (private direction: Directions) {
+
     }
-    
+
     private checkXCords(point: Point, map: IMap): boolean{
         return ( (point.x >= 0) && (point.x < map.size) );
     }
@@ -74,6 +70,7 @@ export class MovementService {
         }
 
         this.assignNewPosition(movable,newPosition,map);
+        map.drawMap();        
         return true;
     }
 
@@ -93,6 +90,8 @@ export class MovementService {
         }
 
         this.assignNewPosition(movable,newPosition,map);
+        console.clear();
+        map.drawMap();  
         return true;
     }
 

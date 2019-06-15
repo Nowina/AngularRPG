@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { WarriorFactory } from 'src/app/data-source/factories/hero/warrior.factory';
 import { EquipmentFactory } from 'src/app/data-source/factories/other/equipment.factory';
 import { ItemRepository } from 'src/app/data-source/repositories/item-repository';
@@ -11,6 +11,7 @@ import { SquareMap } from 'src/app/models/map/square-map';
 import { MovementService } from 'src/app/services/movement.service';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { Directions } from 'src/app/utilities/directions';
+import { KeyboardController } from 'src/app/controllers/keyboard-event.controller';
 
 
 @Component({
@@ -20,6 +21,8 @@ import { Directions } from 'src/app/utilities/directions';
 })
 
 export class BoardComponent implements OnInit {
+  @ViewChild(KeyboardListener)
+  private keyboardListener: KeyboardListener;
   
   constructor() { }
 
@@ -30,14 +33,11 @@ export class BoardComponent implements OnInit {
     seed.seedData(itemRepo);
 
     let hero: Warrior = new WarriorFactory(new DigitGenerator(), new EquipmentFactory()).create("JohnyBravo",1);
-    let keyboardListener: KeyboardListener = new KeyboardListener();
-    let movementService: MovementService = new MovementService(new Directions(), keyboardListener);
+    let movementService: MovementService = new MovementService(new Directions());
+    let keyboardController: KeyboardController = new KeyboardController(this.keyboardListener, movementService, map, hero);
 
     movementService.placeOnMap(hero,map,new Point(0,0));
-    movementService.octileMove(hero, map, OctileDirectionsEnum.S);
-    movementService.octileMove(hero, map, OctileDirectionsEnum.E);
-    movementService.octileMove(hero, map, OctileDirectionsEnum.NW);
-    map.logMapToConsole();
+    map.drawMap();
   }
   
 }
