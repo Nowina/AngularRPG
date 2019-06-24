@@ -4,10 +4,12 @@ import { Warrior } from 'src/app/models/hero/warrior';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { EquipmentFactory } from '../other/equipment.factory';
 
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class WarriorFactory extends HeroFactory {
-    constructor(digitGenerator: DigitGenerator, EquipmentFactory: EquipmentFactory) {
-        super(HeroType.Warrior,digitGenerator, EquipmentFactory);
+    constructor(private readonly digitGenerator: DigitGenerator, private readonly equipmentFactory: EquipmentFactory) {
+        super(HeroType.Warrior, digitGenerator, equipmentFactory);
     }
 
     public create(name: string, level: number): Warrior {

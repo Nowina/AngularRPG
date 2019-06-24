@@ -2,7 +2,9 @@ import { IContainerHandler } from '../models/interfaces/container-handler';
 import { IContainerService } from './container.service';
 import { IPickable } from '../models/interfaces/pickable';
 import { IContainer } from '../models/interfaces/container';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class IContainerHandlerService {
     constructor(private containerService: IContainerService) { }
 

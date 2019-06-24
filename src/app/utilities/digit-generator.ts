@@ -1,5 +1,6 @@
 import { Point } from '../models/map/point';
-
+import { Injectable } from '@angular/core';
+@Injectable()
 export class DigitGenerator {
     /**
      * @param min initially 0

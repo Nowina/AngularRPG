@@ -3,7 +3,8 @@ import { IEquipment } from '../models/interfaces/equipment';
 import { Item } from '../models/item/item';
 import { ItemType } from '../models/enums/item-type';
 import { Backpack } from '../models/item/backpack.item';
-
+import { Injectable } from '@angular/core';
+@Injectable()
 export class IEquipmentService {
     constructor () {}
 

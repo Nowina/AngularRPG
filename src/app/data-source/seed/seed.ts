@@ -11,27 +11,21 @@ import { MapFactory } from '../factories/map/map-factory';
 import { RoadOnMapFactory } from '../factories/map/road-on-map-factory';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { Directions } from 'src/app/utilities/directions';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class Seed {
-    private WeaponFactory: WeaponFactory;
-    private BackpackFactory: BackpackFactory;
-    private ClothingFactory: ClothingFactory;
-    private MapFactory: MapFactory;
     private RoadOnMapGenerator: RoadOnMapFactory;
     private map: SquareMap;
     private mapUtils: MapUtilities;
+    private MapFactory: MapFactory;
 
-    constructor(private digitGenerator: DigitGenerator) {
-
-        this.MapFactory = new MapFactory();
-
-        this.WeaponFactory = new WeaponFactory();
-        
-        this.ClothingFactory = new ClothingFactory();
-        
-        this.BackpackFactory = new BackpackFactory();
-
-        this.digitGenerator = digitGenerator;
+    constructor(private readonly digitGenerator: DigitGenerator,
+        private readonly WeaponFactory: WeaponFactory,
+        private readonly ClothingFactory: ClothingFactory,
+        private readonly BackpackFactory: BackpackFactory,
+        ) {
+            this.MapFactory = new MapFactory();
     }
 
     public seedData(itemRepo: ItemRepository): void {

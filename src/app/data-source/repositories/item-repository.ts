@@ -4,7 +4,9 @@ import { ItemType } from 'src/app/models/enums/item-type';
 import { Backpack } from 'src/app/models/item/backpack.item';
 import { Weapon } from 'src/app/models/item/weapon.item';
 import { ClothingPart } from 'src/app/models/item/clothing-part.item';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class ItemRepository extends Repository<Item>{
 
     constructor() {

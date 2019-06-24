@@ -1,7 +1,8 @@
 import { ItemFactory } from './item.factory';
 import { ItemType } from 'src/app/models/enums/item-type';
 import { Weapon } from 'src/app/models/item/weapon.item';
-
+import { Injectable } from '@angular/core';
+@Injectable()
 export class WeaponFactory extends ItemFactory {
     
     constructor() {

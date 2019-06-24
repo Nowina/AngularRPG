@@ -3,11 +3,12 @@ import { HeroType } from 'src/app/models/enums/hero-type';
 import { Mage } from 'src/app/models/hero/mage';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { EquipmentFactory } from '../other/equipment.factory';
-
+import { Injectable } from '@angular/core';
+@Injectable()
 export class MageFactory extends HeroFactory {
 
-    constructor(digitGenerator: DigitGenerator, EquipmentFactory: EquipmentFactory) {
-        super(HeroType.Mage, digitGenerator, EquipmentFactory);
+    constructor(private readonly digitGenerator: DigitGenerator, private readonly equipmentFactory: EquipmentFactory) {
+        super(HeroType.Mage, digitGenerator, equipmentFactory);
     }
 
     public create(name: string, level: number): Mage {

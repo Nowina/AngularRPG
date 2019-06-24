@@ -8,7 +8,7 @@ import { EquipmentFactory } from '../other/equipment.factory';
 
 export abstract class HeroFactory {
 
-    constructor(private heroType: HeroType, private DigitGenerator: DigitGenerator, private EquipmentFactory: EquipmentFactory ) {
+    constructor(private heroType: HeroType, private readonly DigitGenerator: DigitGenerator, private readonly EquipmentFactory: EquipmentFactory ) {
     }
 
     protected fillBaseHeroData(hero: Hero, name: string, level: number): void {

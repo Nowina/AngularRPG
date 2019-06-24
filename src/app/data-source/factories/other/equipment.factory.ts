@@ -1,6 +1,7 @@
 import { Equipment } from 'src/app/models/other/equipment';
 import { Hero } from 'src/app/models/hero/hero';
-
+import { Injectable } from '@angular/core';
+@Injectable()
 export class EquipmentFactory {
     constructor (){}
 

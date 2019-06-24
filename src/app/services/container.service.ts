@@ -1,7 +1,8 @@
 import { Item } from '../models/item/item';
 import { IContainer } from '../models/interfaces/container';
 import { IPickable } from '../models/interfaces/pickable';
-
+import { Injectable } from '@angular/core';
+@Injectable()
 export class IContainerService {
     constructor () {}
 

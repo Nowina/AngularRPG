@@ -24,18 +24,16 @@ export class BoardComponent implements OnInit {
   @ViewChild(KeyboardListener)
   private keyboardListener: KeyboardListener;
   
-  constructor() { }
+  constructor(private readonly seed: Seed, private readonly itemRepo: ItemRepository) { }
 
   ngOnInit() {
-    let seed: Seed = new Seed(new DigitGenerator());
-    let map: SquareMap = seed.seedMap();
-    let itemRepo: ItemRepository = new ItemRepository();
-    seed.seedData(itemRepo);
+    let map: SquareMap = this.seed.seedMap();
+    this.seed.seedData(this.itemRepo);
 
     let hero: Warrior = new WarriorFactory(new DigitGenerator(), new EquipmentFactory()).create("JohnyBravo",1);
     let movementService: MovementService = new MovementService(new Directions());
     let keyboardController: KeyboardController = new KeyboardController(this.keyboardListener, movementService, map, hero);
-
+    console.log(hero);
     movementService.placeOnMap(hero,map,new Point(0,0));
     map.drawMap();
   }

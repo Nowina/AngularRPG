@@ -2,7 +2,8 @@ import { ItemFactory } from './item.factory';
 import { ItemType } from 'src/app/models/enums/item-type';
 import { Backpack } from 'src/app/models/item/backpack.item';
 
-
+import { Injectable } from '@angular/core';
+@Injectable()
 export class BackpackFactory extends ItemFactory {
     constructor() {
         super(ItemType.Backpack);

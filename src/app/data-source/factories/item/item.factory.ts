@@ -3,7 +3,6 @@ import { ItemType } from 'src/app/models/enums/item-type';
 import { Item } from 'src/app/models/item/item';
 import { ItemStatus } from 'src/app/models/enums/item-status';
 
-
 export abstract class ItemFactory {
     private utilitis: Utilitis;
     constructor(private itemType: ItemType) {

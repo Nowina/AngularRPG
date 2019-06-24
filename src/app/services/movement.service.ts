@@ -5,8 +5,9 @@ import { Directions } from '../utilities/directions';
 import { MapTileStatus } from '../models/enums/map-tile-status';
 import { QuadrantDirectionsEnum } from '../models/enums/quadrant-directions';
 import { OctileDirectionsEnum } from '../models/enums/octile-direction';
+import { Injectable } from '@angular/core';
 
-
+@Injectable()
 export class MovementService {
     
     constructor (private direction: Directions) {

@@ -80,7 +80,7 @@ export class MapFactory {
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 let newTile = this.generateRandomTile(new Point(x, y), generateWater, generateForest);
-                // console.log(newTile);
+
                 map.grid[y][x] = newTile;
 
                 if (newTile.type == MapTileType.Forest) {
