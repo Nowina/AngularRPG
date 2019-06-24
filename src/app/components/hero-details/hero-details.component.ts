@@ -6,6 +6,8 @@ import { DataTableDirective } from 'angular-datatables';
 import { Item } from 'src/app/models/item/item';
 import { ItemRepository } from 'src/app/data-source/repositories/item-repository';
 import { HeroType } from 'src/app/models/enums/hero-type';
+import { ItemStatus } from 'src/app/models/enums/item-status';
+import { ItemType } from 'src/app/models/enums/item-type';
 
 @Component({
   selector: 'app-hero-details',
@@ -49,9 +51,8 @@ export class HeroDetailsComponent implements OnInit {
       {name: "name", title: "Name", data: "name" },
       {name: "level", title: "Level", data: "level"},
       {name: "weight", title: "Weight", data: "weight" },
-      {name: "type", title: "Type", data: "type", render: (data, type, row, meta) => HeroType[data]},
-      {name: "status", title: "Status", data: "status" },
-      {name: "owner", title: "Owner", data: "owner" }
+      {name: "type", title: "Type", data: "type", render: (data, type, row, meta) => ItemType[data]},
+      {name: "status", title: "Status", data: "status",render: (data, type, row, meta) => ItemStatus[data] }
     ]
 
     this.dtOptions = options;
