@@ -12,6 +12,7 @@ import { MovementService } from 'src/app/services/movement.service';
 import { DigitGenerator } from 'src/app/utilities/digit-generator';
 import { Directions } from 'src/app/utilities/directions';
 import { KeyboardController } from 'src/app/controllers/keyboard-event.controller';
+import { HeroRepository } from 'src/app/data-source/repositories/hero-repository';
 
 
 @Component({
@@ -21,21 +22,19 @@ import { KeyboardController } from 'src/app/controllers/keyboard-event.controlle
 })
 
 export class BoardComponent implements OnInit {
-  @ViewChild(KeyboardListener)
+  @ViewChild(KeyboardListener, { static: true })
   private keyboardListener: KeyboardListener;
-  
-  constructor(private readonly seed: Seed, private readonly itemRepo: ItemRepository) { }
+
+  constructor(private readonly seed: Seed, private readonly heroRepository: HeroRepository) { }
 
   ngOnInit() {
-    let map: SquareMap = this.seed.seedMap();
-    this.seed.seedData(this.itemRepo);
-
-    let hero: Warrior = new WarriorFactory(new DigitGenerator(), new EquipmentFactory()).create("JohnyBravo",1);
+    let map: SquareMap = this.seed.seedMap()
+    let hero: Warrior = this.heroRepository.getHero() as Warrior;
     let movementService: MovementService = new MovementService(new Directions());
     let keyboardController: KeyboardController = new KeyboardController(this.keyboardListener, movementService, map, hero);
+    movementService.placeOnMap(hero, map, new Point(0, 0));
     console.log(hero);
-    movementService.placeOnMap(hero,map,new Point(0,0));
     map.drawMap();
   }
-  
+
 }

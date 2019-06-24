@@ -29,6 +29,8 @@ import { IContainerService } from './services/container.service';
 import { IEquipmentService } from './services/equipment.service';
 import { MovementService } from './services/movement.service';
 import { DigitGenerator } from './utilities/digit-generator';
+import { HeroRepository } from './data-source/repositories/hero-repository';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { DigitGenerator } from './utilities/digit-generator';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DataTablesModule
   ],
   providers: [
     {provide: Seed, useClass: Seed},
@@ -64,7 +67,8 @@ import { DigitGenerator } from './utilities/digit-generator';
     {provide: IContainerService, useClass: IContainerService},
     {provide: IEquipmentService, useClass: IEquipmentService},
     {provide: MovementService, useClass: MovementService},
-    {provide: DigitGenerator, useClass: DigitGenerator}
+    {provide: DigitGenerator, useClass: DigitGenerator},
+    {provide: HeroRepository, useClass: HeroRepository}
   ],
   bootstrap: [AppComponent]
 })
