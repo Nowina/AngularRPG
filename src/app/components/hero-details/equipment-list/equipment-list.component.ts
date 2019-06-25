@@ -1,41 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Hero } from 'src/app/models/hero/hero';
-import { HeroRepository } from 'src/app/data-source/repositories/hero-repository';
 import { DataTableDirective } from 'angular-datatables';
 import { Item } from 'src/app/models/item/item';
-import { ItemRepository } from 'src/app/data-source/repositories/item-repository';
-import { HeroType } from 'src/app/models/enums/hero-type';
-import { ItemStatus } from 'src/app/models/enums/item-status';
+import { Hero } from 'src/app/models/hero/hero';
 import { ItemType } from 'src/app/models/enums/item-type';
+import { ItemStatus } from 'src/app/models/enums/item-status';
+import { HeroRepository } from 'src/app/data-source/repositories/hero-repository';
+import { ItemRepository } from 'src/app/data-source/repositories/item-repository';
 
 @Component({
-  selector: 'app-hero-details',
-  templateUrl: './hero-details.component.html',
-  styleUrls: ['./hero-details.component.css']
+  selector: 'app-equipment-list',
+  templateUrl: './equipment-list.component.html',
+  styleUrls: ['./equipment-list.component.css']
 })
-
-export class HeroDetailsComponent implements OnInit {
+export class EquipmentListComponent implements OnInit {
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<void> = new Subject<void>();
   public dtInstance: DataTables.Api;
   
   @ViewChild(DataTableDirective, { static: true })
   private dataTableElement: DataTableDirective;
-
-  private tableData: Item[];
+  tableData: Item[];
   private hero: Hero;
-  constructor(private readonly itemRepository: ItemRepository) { }
+  constructor(private readonly heroRepository: HeroRepository) { }
 
   ngOnInit(): void {
     this.loadData();
     this.initTable();
-    console.log(this.tableData);
-    
   }
 
   private loadData(): void {
-    this.tableData = this.itemRepository.getAll();
+    this.hero = this.heroRepository.getHero();
+    this.tableData = this.hero.equipment.items as Item[];
+    let backpack = this.hero.equipment.container as unknown;
+    this.tableData.push(backpack as Item);
   }
 
   private async initTable(): Promise<void>{

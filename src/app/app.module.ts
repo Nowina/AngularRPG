@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './components/board/board.component';
 import { HeroFormComponent } from './components/hero-form/hero-form.component';
-import { HeroDetailsComponent } from './components/hero-details/hero-details.component';
+import { HeroComponent } from './components/hero-details/hero.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -31,13 +31,16 @@ import { MovementService } from './services/movement.service';
 import { DigitGenerator } from './utilities/digit-generator';
 import { HeroRepository } from './data-source/repositories/hero-repository';
 import { DataTablesModule } from 'angular-datatables';
+import { EquipmentListComponent } from './components/hero-details/equipment-list/equipment-list.component';
+import {BackpackItemsListComponent} from "./components/hero-details/backpack-items-list/backpack-items-list.component";
+import { HeroInfoComponent } from './components/hero-details/hero-info/hero-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
     HeroFormComponent,
-    HeroDetailsComponent,
+    HeroComponent,
     HeaderComponent,
     FooterComponent,
     NavBarComponent,
@@ -46,7 +49,10 @@ import { DataTablesModule } from 'angular-datatables';
     ShopItemDetailsComponent,
     ShopItemListComponent,
     KeyboardListener,
-    MapTileComponent
+    MapTileComponent,
+    EquipmentListComponent,
+    BackpackItemsListComponent,
+    HeroInfoComponent
   ],
   imports: [
     BrowserModule,

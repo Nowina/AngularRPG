@@ -52,7 +52,7 @@ export class Seed {
     private seedBackpacks(): Backpack[] {
         let backpacks: Backpack[] = [];
         backpacks.push(this.BackpackFactory.create("Small Backpack", 1));
-        backpacks.push(this.BackpackFactory.create("Big backpack", 3));
+        backpacks.push(this.BackpackFactory.create("Big backpack", 30));
         return backpacks;
     }
 
