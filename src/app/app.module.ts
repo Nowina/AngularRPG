@@ -34,6 +34,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { EquipmentListComponent } from './components/hero-details/equipment-list/equipment-list.component';
 import {BackpackItemsListComponent} from "./components/hero-details/backpack-items-list/backpack-items-list.component";
 import { HeroInfoComponent } from './components/hero-details/hero-info/hero-info.component';
+import { ItemDetailsComponent } from './components/hero-details/item-details/item-details.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { HeroInfoComponent } from './components/hero-details/hero-info/hero-info
     MapTileComponent,
     EquipmentListComponent,
     BackpackItemsListComponent,
-    HeroInfoComponent
+    HeroInfoComponent,
+    ItemDetailsComponent
   ],
   imports: [
     BrowserModule,
