@@ -54,12 +54,14 @@ export class EquipmentListComponent implements OnInit {
       {name: "level", title: "Level", data: "level"},
       {name: "weight", title: "Weight", data: "weight" },
       {name: "type", title: "Type", data: "type", render: (data, type, row, meta) => ItemType[data]},
-      {name: "status", title: "Status", data: "status",render: (data, type, row, meta) => ItemStatus[data] }
+      {name: "status", title: "Status", data: "status", render: (data, type, row, meta) => ItemStatus[data] }
     ]
+    
     options.rowCallback = (row: Node, data: any[] | Object, index: number) => {
       const self = this;
       $('td', row).unbind('click');
       $('td', row).bind('click', () => {
+        console.log("event emitted");
         self.onItemSelected.emit(data as Item);
       });
       return row;

@@ -15,5 +15,10 @@ import { ItemType } from 'src/app/models/enums/item-type';
 })
 
 export class HeroComponent{
+  public selectedItem: Item;
+  
+  public onItemSelected(item: Item): void{
+    this.selectedItem = item;
+  }
   
 }

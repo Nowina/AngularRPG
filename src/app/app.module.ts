@@ -35,6 +35,7 @@ import { EquipmentListComponent } from './components/hero-details/equipment-list
 import {BackpackItemsListComponent} from "./components/hero-details/backpack-items-list/backpack-items-list.component";
 import { HeroInfoComponent } from './components/hero-details/hero-info/hero-info.component';
 import { ItemDetailsComponent } from './components/hero-details/item-details/item-details.component';
+import { EquipmentViewerController } from './controllers/equipment-viewer.controller';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ItemDetailsComponent } from './components/hero-details/item-details/ite
     {provide: IEquipmentService, useClass: IEquipmentService},
     {provide: MovementService, useClass: MovementService},
     {provide: DigitGenerator, useClass: DigitGenerator},
-    {provide: HeroRepository, useClass: HeroRepository}
+    {provide: HeroRepository, useClass: HeroRepository},
+    {provide: EquipmentViewerController, useClass: EquipmentViewerController}
   ],
   bootstrap: [AppComponent]
 })
