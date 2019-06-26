@@ -55,8 +55,8 @@ export class BackpackItemsListComponent implements OnInit {
 
     options.rowCallback = (row: Node, data: any[] | Object, index: number) => {
       const self = this;
-      $('td', row).unbind('click');
-      $('td', row).bind('click', () => {
+      $('td', row).unbind('mouseenter');
+      $('td', row).bind('mouseenter', () => {
         self.equipmentViewController.selectedItem = data as Item;
       });
       return row;
