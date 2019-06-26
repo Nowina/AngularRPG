@@ -36,6 +36,10 @@ import {BackpackItemsListComponent} from "./components/hero-details/backpack-ite
 import { HeroInfoComponent } from './components/hero-details/hero-info/hero-info.component';
 import { ItemDetailsComponent } from './components/hero-details/item-details/item-details.component';
 import { EquipmentViewerController } from './controllers/equipment-viewer.controller';
+import { WeaponDetailsComponent } from './components/hero-details/item-details/typed-item-details/weapon-details/weapon-details.component';
+import { ClothingPartDetailsComponent } from './components/hero-details/item-details/typed-item-details/clothing-part-details/clothing-part-details.component';
+import { BackpackDetailsComponent } from './components/hero-details/item-details/typed-item-details/backpack-details/backpack-details.component';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +59,10 @@ import { EquipmentViewerController } from './controllers/equipment-viewer.contro
     EquipmentListComponent,
     BackpackItemsListComponent,
     HeroInfoComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    WeaponDetailsComponent,
+    ClothingPartDetailsComponent,
+    BackpackDetailsComponent
   ],
   imports: [
     BrowserModule,

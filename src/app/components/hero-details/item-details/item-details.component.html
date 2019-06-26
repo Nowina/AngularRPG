@@ -1,7 +1,18 @@
 <div *ngIf="isLoaded()">
-    <ul >
-        <li><b>Name:</b> {{displayedItem.name}}</li>
-        <li><b>Type:</b> {{getItemType(displayedItem.type)}}</li>
-    </ul>
+    <h1>Name: {{displayedItem.name}}</h1>
+    <h1>Type: {{getItemType( displayedItem.type )}}</h1>
+    <h1>Level: {{displayedItem.level}}</h1>
+    <div [ngSwitch]="displayedItem.type">
+        <div *ngSwitchCase=" ItemType.Weapon ">
+            <app-weapon-details [displayedItem] = "getItemAsWeapon()"></app-weapon-details>
+        </div>
+
+        <div *ngSwitchCase=" ItemType.Backpack ">
+            <app-backpack-details [displayedItem] = "getItemAsBacpack()"></app-backpack-details>
+        </div>
+
+        <div *ngSwitchCase=" ItemType.ClothingPart ">
+            <app-clothing-part-details [displayedItem] = "getItemAsClothingPart()"></app-clothing-part-details>
+        </div>
+    </div>
 </div>
-This works !

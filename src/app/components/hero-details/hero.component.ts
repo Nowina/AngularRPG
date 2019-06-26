@@ -7,6 +7,7 @@ import { Item } from 'src/app/models/item/item';
 import { ItemRepository } from 'src/app/data-source/repositories/item-repository';
 import { ItemStatus } from 'src/app/models/enums/item-status';
 import { ItemType } from 'src/app/models/enums/item-type';
+import { EquipmentViewerController } from 'src/app/controllers/equipment-viewer.controller';
 
 @Component({
   selector: 'app-hero',
@@ -15,10 +16,9 @@ import { ItemType } from 'src/app/models/enums/item-type';
 })
 
 export class HeroComponent{
-  public selectedItem: Item;
   
-  public onItemSelected(item: Item): void{
-    this.selectedItem = item;
+  constructor (public readonly equipmentViewController: EquipmentViewerController){
+
   }
   
 }

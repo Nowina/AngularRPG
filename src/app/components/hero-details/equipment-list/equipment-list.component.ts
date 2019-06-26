@@ -7,6 +7,7 @@ import { ItemType } from 'src/app/models/enums/item-type';
 import { ItemStatus } from 'src/app/models/enums/item-status';
 import { HeroRepository } from 'src/app/data-source/repositories/hero-repository';
 import { EventEmitter } from '@angular/core';
+import { EquipmentViewerController } from 'src/app/controllers/equipment-viewer.controller';
 
 @Component({
   selector: 'app-equipment-list',
@@ -16,17 +17,14 @@ import { EventEmitter } from '@angular/core';
 export class EquipmentListComponent implements OnInit {
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<void> = new Subject<void>();
-  public dtInstance: DataTables.Api;
-
-  @Output() 
-  public onItemSelected = new EventEmitter<Item>(); 
+  public dtInstance: DataTables.Api; 
   
   @ViewChild(DataTableDirective, { static: true })
   private dataTableElement: DataTableDirective;
   tableData: Item[];
 
   private hero: Hero;
-  constructor(private readonly heroRepository: HeroRepository) { }
+  constructor(private readonly heroRepository: HeroRepository, private readonly equipmentViewController: EquipmentViewerController) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -56,13 +54,12 @@ export class EquipmentListComponent implements OnInit {
       {name: "type", title: "Type", data: "type", render: (data, type, row, meta) => ItemType[data]},
       {name: "status", title: "Status", data: "status", render: (data, type, row, meta) => ItemStatus[data] }
     ]
-    
+
     options.rowCallback = (row: Node, data: any[] | Object, index: number) => {
       const self = this;
       $('td', row).unbind('click');
       $('td', row).bind('click', () => {
-        console.log("event emitted");
-        self.onItemSelected.emit(data as Item);
+        self.equipmentViewController.selectedItem = data as Item;
       });
       return row;
     }
