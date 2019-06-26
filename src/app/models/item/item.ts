@@ -10,7 +10,7 @@ export abstract class Item implements IPickable, IEquipable {
     public isEquipped: boolean;
     public weight: number;
     public name: string;
-    public durability: number;
+    public durabillity: number;
     public status: ItemStatus;
     public level: number;
     public type: ItemType;

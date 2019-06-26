@@ -13,7 +13,7 @@ export abstract class ItemFactory {
     protected fillBaseItemData(item: Item, name: string, level: number): void {
         item.name = name;
         item.level = level;
-        item.durability = level * 50;
+        item.durabillity = level * 50;
         item.status = ItemStatus.Active;
         item.type = this.itemType;
         item.weight = this.utilitis.calculateItemWeight(item);

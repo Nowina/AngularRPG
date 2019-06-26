@@ -3,8 +3,8 @@ import { IUsable } from '../interfaces/usable';
 import { Hero } from '../hero/hero';
 
 export class Weapon extends Item implements IUsable {
-    public owner: Hero;
     public durabillity: number;
+    public owner: Hero;
     public usageFactor: number;
     public range: number;
     public isEquipped: boolean;
